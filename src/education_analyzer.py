@@ -454,9 +454,19 @@ class DataLoader:
     @staticmethod
     def load_datasets(before_path: str, after_path: str) -> Tuple[pd.DataFrame, pd.DataFrame]:
         """Load before and after AI datasets."""
+        def _read(p):
+            for sep in [',', ';']:
+                try:
+                    df = pd.read_csv(p, sep=sep, encoding='utf-8')
+                    if df.shape[1] > 1:
+                        return df
+                except Exception:
+                    pass
+            return pd.read_csv(p, encoding='utf-8')
+
         try:
-            df_before = pd.read_csv(before_path, sep=';', encoding='utf-8')
-            df_after = pd.read_csv(after_path, encoding='utf-8')
+            df_before = _read(before_path)
+            df_after = _read(after_path)
             logging.info(f"Loaded datasets: before({df_before.shape}), after({df_after.shape})")
             return df_before, df_after
         except Exception as e:

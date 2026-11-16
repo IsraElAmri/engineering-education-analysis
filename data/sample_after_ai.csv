@@ -1,7 +1,7 @@
 country,education_system,employability_pct,graduation_rate_pct,avg_start_salary_eur,annual_cost_local_eur,pct_courses_AI
-France,Système Français (Grandes Écoles),85,90,45000,8000,17,4
-Germany,Système Allemand/Europe Centrale,82,88,42000,12000,10,3
-United States,Système Anglo-Saxon,88,92,48000,25000,11,4
-Tunisia,Système Français (Grandes Écoles),78,85,38000,6000,19,9
-Hungary,Système Allemand/Europe Centrale,80,87,40000,10000,11
-Mexico,Système Anglo-Saxon,86,89,46000,20000,10,3
+France,Système Français (Grandes Écoles),85,90,45000,8000,17.4
+Germany,Système Allemand/Europe Centrale,82,88,42000,12000,10.3
+United States,Système Anglo-Saxon,88,92,48000,25000,11.4
+Tunisia,Système Français (Grandes Écoles),78,85,38000,6000,19.9
+Hungary,Système Allemand/Europe Centrale,80,87,40000,10000,11.0
+Mexico,Système Anglo-Saxon,86,89,46000,20000,10.3

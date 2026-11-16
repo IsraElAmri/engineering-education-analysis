@@ -243,7 +243,8 @@ def main():
     plt.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    output_dir = '../Downloads/sof1/'
+    output_dir = 'figures/' if os.path.exists('figures') else ('../figures/' if os.path.exists('../figures') else './')
+    os.makedirs(output_dir, exist_ok=True)
     plt.savefig(output_dir + 'comprehensive_visualization.png', dpi=300, bbox_inches='tight')
     plt.close()  # Don't show plot in script mode
 

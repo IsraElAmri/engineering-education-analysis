@@ -1,93 +1,91 @@
-# Engineering Education Statistical Analysis & AI Impact Modeling
+# Engineering Education Analysis Pipeline
 
-[![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11-blue?logo=python)](https://www.python.org/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3+-orange?logo=scikit-learn)](https://scikit-learn.org/)
-[![SciPy](https://img.shields.io/badge/SciPy-Hypothesis%20Testing-0C55A5?logo=scipy)](https://scipy.org/)
-[![Random Forest Accuracy](https://img.shields.io/badge/Classification%20Accuracy-92.7%25-brightgreen)](#-machine-learning-classification)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3+-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![SciPy](https://img.shields.io/badge/SciPy-Hypothesis%20Testing-8CAAE6?logo=scipy&logoColor=white)](https://scipy.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **Comparative Statistical Modeling and Machine Learning Study of Engineering Education Systems.**  
-> Investigates the structural impact of rapid Artificial Intelligence integration (2020–2025) across French (Grandes Écoles), German (Dual/Central European), and Anglo-Saxon engineering curricula. Group research project at ENSIT.
+Python analysis pipeline developed as an individual module within a 12-person student team project at the National Engineering School of Tunis (ENSIT). The wider team project evaluated the impact of artificial intelligence integration across engineering education models.
 
----
+This repository isolates my specific contribution: the modular Python analysis pipeline implementing non-parametric statistical hypothesis testing, unsupervised clustering (K-Means), and supervised feature importance ranking (Random Forest) evaluated on simulated curriculum data.
 
-## 📌 Project Overview
+## Demonstration Data Notice
 
-As engineering institutions globally integrated machine learning and generative AI into their foundational curricula, educational architectures experienced contrasting friction. This project analyzes **124 synthetic and institutional observations** across **21 educational and labor-market metrics** to quantify:
-1. Baseline structural performance across models (Employability, Annual ROI, Graduation Rate).
-2. The counter-intuitive transition dynamics induced by rapid AI curriculum injection (+160% to +180% AI course content).
-3. Supervised classification power to distinguish educational architectures.
+To facilitate self-contained execution without distributing proprietary survey responses, this repository ships with a 6-row demonstration dataset (`data/sample_before_ai.csv` and `data/sample_after_ai.csv`).
 
-### 🌟 Key Findings
-- **Transition Friction**: Despite massive surges in AI competencies, short-term graduate employability exhibited temporary negative dips (−3.9% to −6.8%), most notably in the German dual system ($p = 0.032$), demonstrating sensitivity to rapid pedagogical disruptions.
-- **Statistical Significance**: Kruskal-Wallis non-parametric tests confirmed statistically significant structural divergence ($p < 0.001$) across employability and ROI.
-- **Machine Learning Classification**: A Random Forest classifier achieves **92.7% accuracy** in identifying educational architectures based on graduation rates, curricular structure, and ROI metrics.
+- The sample files serve exclusively to verify pipeline execution and format compatibility.
+- The visualizations in `figures/` originate from the earlier run on the full simulated dataset.
+- Every metric reported in project documentation was evaluated on the simulated dataset; no real-world empirical conclusions are drawn from the 6-row demonstration sample.
 
----
+## Pipeline Architecture
 
-## 📊 Key Results & Visualizations
+The pipeline (`src/education_analyzer.py`) processes baseline and post-AI curricular indicators:
 
-| Educational Architecture | Sample Size ($N$) | Mean Employability | 95% Confidence Interval | Mean Annual ROI (%) |
-|---|---|---|---|---|
-| **Système Français (Grandes Écoles)** | 32 | 72.55% | [69.59%, 75.51%] | 162.66% |
-| **Système Allemand / Europe Centrale** | 37 | 83.03% | [80.72%, 85.35%] | 202.67% |
-| **Système Anglo-Saxon** | 55 | 78.65% | [76.52%, 80.79%] | 163.44% |
+1. **Preprocessing**: Validates column schemas, standardizes currency values, and normalizes numeric indicators using `StandardScaler`.
+2. **Statistical Hypothesis Testing**: Conducts paired comparison tests comparing pre- and post-AI metrics to evaluate shifts in AI course percentage and transition indicators.
+3. **Unsupervised Clustering**: Applies K-Means clustering ($k=3$) to group educational profiles based on structural indicators (starting salary, annual cost, AI course share).
+4. **Supervised Feature Importance**: Fits a Random Forest classifier to identify which curricular and economic features best discriminate between educational models on simulated data.
+5. **Reporting**: Generates summary CSV tables and an automated HTML diagnostic report.
 
-| Feature Importance (Random Forest) | Correlation Heatmap |
-|:---:|:---:|
-| ![Feature Importance](figures/feature_importance.png) | ![Correlation Heatmap](figures/correlation_heatmap.png) |
+## Baseline Observations (Simulated Dataset)
 
----
+Across the simulated project run, the analysis pipeline identified:
+- **Top Differentiators**: Annual tuition/local cost and graduate starting salary accounted for the dominant share of relative feature importance in separating institutional models on the simulated dataset.
+- **Curriculum Shifts**: AI course share increased between pre- and post-integration periods across all modeled institutions in the simulation.
 
-## 🏗️ Repository Structure
+## Repository Structure
 
 ```
 engineering-education-analysis/
-├── data/
-│   ├── sample_before_ai.csv           # Baseline curriculum & outcome metrics
-│   └── sample_after_ai.csv            # Post-AI curriculum integration metrics
-├── figures/
-│   ├── correlation_heatmap.png        # Cross-metric correlation matrix
-│   └── feature_importance.png         # Random Forest feature attribution
-├── src/
-│   ├── education_analyzer.py          # Core statistical pipeline & report generator
-│   ├── run_analysis.py                # End-to-end execution script
-│   └── test_education_analyzer.py     # Unit test suite
 ├── .gitignore
+├── LICENSE
+├── README.md
 ├── requirements.txt
-└── README.md
+├── data/
+│   ├── sample_after_ai.csv
+│   └── sample_before_ai.csv
+├── figures/
+│   ├── correlation_heatmap.png
+│   └── feature_importance.png
+└── src/
+    ├── education_analyzer.py
+    ├── run_analysis.py
+    └── test_education_analyzer.py
 ```
 
----
+## Getting Started
 
-## 🚀 Quick Start Guide
+### Prerequisites
 
-### 1. Installation
+- Python 3.10+
+- Dependencies listed in `requirements.txt`
+
+### Installation
+
 ```bash
 git clone https://github.com/IsraElAmri/engineering-education-analysis.git
 cd engineering-education-analysis
 pip install -r requirements.txt
 ```
 
-### 2. Run the Analysis Pipeline
+### Running the Analysis
+
+Execute the end-to-end pipeline on the demonstration sample:
+
 ```bash
 python src/run_analysis.py
 ```
-This executes:
-- Data validation and country standardization
-- Non-parametric Kruskal-Wallis & Mann-Whitney U hypothesis tests
-- K-Means clustering & PCA decomposition
-- Random Forest model training & feature ranking
-- Automatic generation of the HTML analysis report
 
-### 3. Run Unit Tests
+Generated outputs will be saved to `figures/` and `phase1_analysis_report.html`.
+
+### Running Unit Tests
+
+Run the test suite covering data loading, preprocessing, clustering, and report generation:
+
 ```bash
-python -m unittest src/test_education_analyzer.py
+python -m unittest discover -s src -p "test_*.py"
 ```
 
----
+## License
 
-## 👩‍💻 Authors
-**Isra El Amri & Engineering Project Team (12 students)**  
-National Higher Engineering School of Tunis (ENSIT)  
-Contact: [elamriisra3@gmail.com](mailto:elamriisra3@gmail.com)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

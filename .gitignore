@@ -11,6 +11,10 @@ analysis.log
 *.tmp
 phase1_resultats_finaux_simples.csv
 importance_variables_simples.csv
+figures/*.html
+figures/*.csv
+figures/classification_and_comparison.png
+figures/comprehensive_visualization.png
 
 # OS & IDE
 .DS_Store
