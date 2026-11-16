@@ -49,12 +49,8 @@ engineering-education-analysis/
 ├── figures/
 │   ├── correlation_heatmap.png        # Cross-metric correlation matrix
 │   └── feature_importance.png         # Random Forest feature attribution
-├── reports/
-│   ├── academic_report.pdf            # Full French academic thesis report
-│   ├── phase1_analysis_report.html    # Interactive HTML summary report
-│   └── presentation.pptx              # Research presentation slides
 ├── src/
-│   ├── education_analyzer.py          # Core statistical pipeline & Jinja2 report generator
+│   ├── education_analyzer.py          # Core statistical pipeline & report generator
 │   ├── run_analysis.py                # End-to-end execution script
 │   └── test_education_analyzer.py     # Unit test suite
 ├── .gitignore
@@ -88,13 +84,6 @@ This executes:
 ```bash
 python -m unittest src/test_education_analyzer.py
 ```
-
----
-
-## 📜 Academic Report
-The full French academic study and presentation are available in:
-- [Rapport Académique (PDF)](reports/academic_report.pdf)
-- [Présentation du Projet (PPTX)](reports/presentation.pptx)
 
 ---
 
