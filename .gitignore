@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+env/
+venv/
+ENV/
+
+# Output logs & Temp generated CSVs
+analysis.log
+*.tmp
+phase1_resultats_finaux_simples.csv
+importance_variables_simples.csv
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
